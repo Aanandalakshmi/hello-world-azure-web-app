@@ -67,5 +67,13 @@ jobs:
         id: deploy-to-webapp
         with:
           app-name: 'hello-world-hz'
-          slot-name: 'Production'
+          slot-name: 'staging'
+      - name: 'Swap Staging and Production Slots'
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'hello-world-hz'
+          slot-name: 'staging'  # This is the source slot with the new code
+          target-slot: 'Production' # This is the production slot to receive the new code
+          swap-with-production: true
+
           
